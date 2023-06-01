@@ -1,0 +1,35 @@
+{
+    "name": "blackjack-server",
+    "version": "1.0.0",
+    "description": "The default server",
+    "main": "bjApp.js",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.19.0",
+        "colors": "^1.3.3",
+        "config": "^3.3.7",
+        "cors": "^2.8.5",
+        "enigma-hash": "^1.1.0",
+        "express": "^4.17.1",
+        "fisher-yates": "^1.0.3",
+        "jsonwebtoken": "^8.5.1",
+        "jssha": "^2.3.1",
+        "mersenne-twister": "^1.1.0",
+        "mysql": "^2.18.1",
+        "pm2": "^4.2.3",
+        "socket.io": "^2.4.1",
+        "uuid": "^3.3.3"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.4"
+    },
+    "scripts": {
+        "dev": "nodemon bjApp.js",
+        "start": "node bjApp.js"
+    },
+    "keywords": [
+        "server"
+    ],
+    "author": "Playmex",
+    "license": "ISC"
+}
