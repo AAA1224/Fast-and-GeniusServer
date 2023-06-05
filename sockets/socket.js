@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const escapeGame = require('../classes/escapeGame');
 const deck = require('../controllers/deck.controller');
 const db = require('../config/db');
-const { login, signup,getShop, changeShop, sendglobalchat, receiveglobalchatlist, receiveglobalchatlistcount, updateglobalchattime, setselectedcharacter, upgradecharacter, getupgradecharacters, upgradeweapon, getupgradeweapons, selectweapon, getPuzzle, getMasterPuzzle, changePuzzle, checkAnswer, getNYTime, waitStartTime, updateBalance, finishedMatch,getMultiplayerStartTime, getLevelStatus } = require("../config/constant");
+const { login, signup,getShop, changeShop, sendglobalchat, receiveglobalchatlist, receiveglobalchatlistcount, updateglobalchattime, setselectedcharacter, upgradecharacter, getupgradecharacters, upgradeweapon, getupgradeweapons, selectweapon, getPuzzle, getMasterPuzzle, changePuzzle, checkAnswer, getNYTime, waitStartTime, updateBalance, finishedMatch,getMultiplayerStartTime, getLevelStatus, updateLevelStatus } = require("../config/constant");
 
 var games = [];
 var escapeGameRooms = [];
