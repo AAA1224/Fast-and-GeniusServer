@@ -90,15 +90,15 @@ io.on('connection', (socket) => {
         });
     });
     socket.on(updateLevelStatus, async function(data){
-        console.log(data);
-        const { user_id } = data;
-        db.query("UPDATE user SET levelStatus = ? WHERE user_id = ?", [levelStatus, parseInt(user_id)], (err, result) => {
+        console.log("test",data);
+        const { user_id,balance, levelStatus } = data;
+        db.query("UPDATE user SET levelStatus = ? , balance = ? WHERE id = ?", [levelStatus, balance, parseInt(user_id)], (err, result) => {
             if(err){
                 console.log(err);
                 socket.emit(updateLevelStatus, { success: false, error: err });
             }
             else{
-                db.query("SELECT id, levelStatus from user where user_id = ?", user_id, async (err, result) => {
+                db.query("SELECT id, balance, levelStatus from user where id = ?", user_id, async (err, result) => {
                     socket.emit(updateLevelStatus, { success: true, data: result[0] });
                 });
 
@@ -116,7 +116,7 @@ io.on('connection', (socket) => {
     socket.on(getLevelStatus, async function(data){
 
         const { user_id} = data;
-        db.query("SELECT id, levelStatus from user where user_id = ?", parseInt(user_id), async (err, result) => {
+        db.query("SELECT id, levelStatus from user where id = ?", parseInt(user_id), async (err, result) => {
             console.log("levelStatus", result[0]);
             socket.emit(getLevelStatus, { success: true, data: result[0] });
         });
