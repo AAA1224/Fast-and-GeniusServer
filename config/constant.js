@@ -30,5 +30,7 @@ const waitStartTime = "WAIT_START_TIME";
 const finishedMatch = "FINISHED_MATCH";
 const getShop = "GET_SHOP";
 const changeShop = "CHANGE_SHOP";
+const getLevelStatus = "GET_LEVEL_STATUS";
+const updateLevelStatus = "UPDATE_LEVEL_STATUS";
 
-module.exports = {login, signup, getShop, changeShop, sendglobalchat, receiveglobalchatlist, receiveglobalchatlistcount, updateglobalchattime, setselectedcharacter, upgradecharacter, getupgradecharacters, upgradeweapon, getupgradeweapons, selectweapon, getPuzzle, getMasterPuzzle, changePuzzle, checkAnswer, getNYTime, waitStartTime, updateBalance, finishedMatch, getMultiplayerStartTime};
+module.exports = {login, signup, getShop, changeShop, getLevelStatus, updateLevelStatus, sendglobalchat, receiveglobalchatlist, receiveglobalchatlistcount, updateglobalchattime, setselectedcharacter, upgradecharacter, getupgradecharacters, upgradeweapon, getupgradeweapons, selectweapon, getPuzzle, getMasterPuzzle, changePuzzle, checkAnswer, getNYTime, waitStartTime, updateBalance, finishedMatch, getMultiplayerStartTime};

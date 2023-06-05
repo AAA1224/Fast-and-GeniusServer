@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const escapeGame = require('../classes/escapeGame');
 const deck = require('../controllers/deck.controller');
 const db = require('../config/db');
-const { login, signup,getShop, changeShop, sendglobalchat, receiveglobalchatlist, receiveglobalchatlistcount, updateglobalchattime, setselectedcharacter, upgradecharacter, getupgradecharacters, upgradeweapon, getupgradeweapons, selectweapon, getPuzzle, getMasterPuzzle, changePuzzle, checkAnswer, getNYTime, waitStartTime, updateBalance, finishedMatch,getMultiplayerStartTime } = require("../config/constant");
+const { login, signup,getShop, changeShop, sendglobalchat, receiveglobalchatlist, receiveglobalchatlistcount, updateglobalchattime, setselectedcharacter, upgradecharacter, getupgradecharacters, upgradeweapon, getupgradeweapons, selectweapon, getPuzzle, getMasterPuzzle, changePuzzle, checkAnswer, getNYTime, waitStartTime, updateBalance, finishedMatch,getMultiplayerStartTime, getLevelStatus } = require("../config/constant");
 
 var games = [];
 var escapeGameRooms = [];
@@ -89,12 +89,36 @@ io.on('connection', (socket) => {
             }
         });
     });
+    socket.on(updateLevelStatus, async function(data){
+        console.log(data);
+        const { user_id } = data;
+        db.query("UPDATE user SET levelStatus = ? WHERE user_id = ?", [levelStatus, parseInt(user_id)], (err, result) => {
+            if(err){
+                console.log(err);
+                socket.emit(updateLevelStatus, { success: false, error: err });
+            }
+            else{
+                db.query("SELECT id, levelStatus from user where user_id = ?", user_id, async (err, result) => {
+                    socket.emit(updateLevelStatus, { success: true, data: result[0] });
+                });
+
+            }
+        });
+    });
     socket.on(getShop, async function(data){
 
         const { user_id} = data;
         db.query("SELECT * from shop where user_id = ?", parseInt(user_id), async (err, result) => {
             console.log("sss", result[0]);
             socket.emit(getShop, { success: true, data: result[0] });
+        });
+    });
+    socket.on(getLevelStatus, async function(data){
+
+        const { user_id} = data;
+        db.query("SELECT id, levelStatus from user where user_id = ?", parseInt(user_id), async (err, result) => {
+            console.log("levelStatus", result[0]);
+            socket.emit(getLevelStatus, { success: true, data: result[0] });
         });
     });
     socket.on(signup, async function (data) {
